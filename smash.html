@@ -7,11 +7,15 @@
     <header>
         <h1 id="unicorns_smashed">Unicorns Smashed: 0</h1>
         <button onclick="Click()">
-            <img id="unicorn_image" src="smash_pics\unicorn.png" alt="Unicorn Image">
+            <img id="unicorn_image" src="unicorn.png" alt="Unicorn Image">
         </button>
     </header>
     <script>
         var clicks = 0;
+        var img1 = new Image();
+        img1.src = "unicorn.png";
+        var img2 = new Image();
+        img2.src = "hand.png";
         function Click() {
             clicks += 1;
             document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
