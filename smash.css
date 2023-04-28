@@ -4,6 +4,9 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 #images-container {
@@ -21,11 +24,43 @@ body {
     position: relative;
     z-index: 1;
     opacity: 1;
+    display: inline-block;
 }
 
 button {
+    padding: 10px;
+    margin: 0;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#double_clicks {
+    position: absolute;
+    top: 20%;
+    left: 1%;
+    z-index: 3;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #ff66cc;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+#double_clicks:disabled {
+    background-color: grey;
+}
+
+#unicorns_smashed {
+    font-size: 36px;
+    color: #ff66cc;
+    margin: 20px;
     background-color: transparent;
     border: none;
-    padding: 0;
-    margin: 0;
+}
+
+#smash {
+    background-color: transparent;
+    border: none !important;
+    z-index: 2;
 }

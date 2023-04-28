@@ -8,35 +8,55 @@
     <header>
         <h1 id="unicorns_smashed">Unicorns Smashed: 0</h1>
         <img id="title" src="Title.png" alt="title">
-        <button onclick="Click()" style="border: none;">
+        <button id="double_clicks" onclick="Double()" style="border: none;">
+            Double Clicks: Costs 50 Unicorns
+        </button>
+        <button id="smash" onclick="Click()" style="border: none;">
             <img id="unicorn_image" src="static_unicorn.png" alt="Unicorn Image">
         </button>
     </header>
     <script>
         var clicks = 0;
+        var doubleClickerActivated = false;
         var gif = new Image();
         gif.src = "smash.gif";
         var static_unicorn = new Image();
         static_unicorn.src = "static_unicorn.png";
         var smack = new Audio("smack.wav");
         var smackPlaying = false;
-        function Click() {
-            clicks += 1;
-            document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
-            if (!smackPlaying) {
-                smackPlaying = true;
-                smack.play();
-                smack.addEventListener("ended", function() {
-                    smackPlaying = false;
-                });
+        
+        var sounds = ["1.wav", "2.wav", "3.wav", "4.wav", "5.wav", "6.wav", "7.wav", "8.wav", "9.wav", "10.wav", "11.wav", "12.wav", "13.wav"];
+
+function Click() {
+    clicks += doubleClickerActivated ? 2 : 1;
+    document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
+    if (clicks % 10 === 0) {  // Check if click count is a multiple of 10
+        var randomIndex = Math.floor(Math.random() * sounds.length);  // Choose a random sound file
+        var sound = new Audio(sounds[randomIndex]);
+        sound.play();  // Play the selected sound file
+    } else if (!smackPlaying) {
+        smackPlaying = true;
+        smack.play();
+        smack.addEventListener("ended", function() {
+            smackPlaying = false;
+        });
+    }
+    document.getElementById("unicorn_image").src = "smash.gif";
+    var checkInterval = setInterval(function() {
+        if (gif.complete) {
+            clearInterval(checkInterval);
+            document.getElementById("unicorn_image").src = "static_unicorn.png";
+        }
+    }, 300);
+}
+        
+        function Double() {
+            if (clicks >= 50 && !doubleClickerActivated) {
+                clicks -= 50;
+                doubleClickerActivated = true;
+                document.getElementById("double_clicks").innerHTML = "Double Clicks Activated!";
+                document.getElementById("double_clicks").disabled = true;
             }
-            document.getElementById("unicorn_image").src = "smash.gif";
-            var checkInterval = setInterval(function() {
-                if (gif.complete) {
-                    clearInterval(checkInterval);
-                    document.getElementById("unicorn_image").src = "static_unicorn.png";
-                }
-            }, 300);
         }
     </script>
 </body>
