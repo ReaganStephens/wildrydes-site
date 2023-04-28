@@ -7,22 +7,34 @@
     <header>
         <h1 id="unicorns_smashed">Unicorns Smashed: 0</h1>
         <button onclick="Click()">
-            <img id="unicorn_image" src="unicorn.png" alt="Unicorn Image">
+            <img id="unicorn_image" src="static_unicorn.png" alt="Unicorn Image">
         </button>
     </header>
     <script>
         var clicks = 0;
-        var img1 = new Image();
-        img1.src = "unicorn.png";
-        var img2 = new Image();
-        img2.src = "hand.png";
+        var gif = new Image();
+        gif.src = "smash.gif";
+        var static_unicorn = new Image();
+        static_unicorn.src = "static_unicorn.png";
+        var smack = new Audio("smack.wav");
+        var smackPlaying = false;
         function Click() {
             clicks += 1;
             document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
-            document.getElementById("unicorn_image").src = "hand.png";
-            setTimeout(function(){
-                document.getElementById("unicorn_image").src = "unicorn.png";
-            }, 200);
+            if (!smackPlaying) {
+                smackPlaying = true;
+                smack.play();
+                smack.addEventListener("ended", function() {
+                    smackPlaying = false;
+                });
+            }
+            document.getElementById("unicorn_image").src = "smash.gif";
+            var checkInterval = setInterval(function() {
+                if (gif.complete) {
+                    clearInterval(checkInterval);
+                    document.getElementById("unicorn_image").src = "static_unicorn.png";
+                }
+            }, 300);
         }
     </script>
 </body>
