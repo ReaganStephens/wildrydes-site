@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>UNICORN SMASH</title>
+</head>
+<body>
     <header>
-        <title> UNICORN SMASH</title>
-        <h1 id="unicorns_smashed"> Unicorns Smashed: 0</h1>
-        <button onclick="Click()"> Click me</button>
+        <h1 id="unicorns_smashed">Unicorns Smashed: 0</h1>
+        <button onclick="Click()">
+            <img id="unicorn_image" src="unicorn.png" alt="Unicorn Image">
+        </button>
     </header>
+    <script>
+        var clicks = 0;
+        function Click() {
+            clicks += 1;
+            document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
+            document.getElementById("unicorn_image").src = "hand.png";
+            setTimeout(function(){
+                document.getElementById("unicorn_image").src = "unicorn.png";
+            }, 3000);
+        }
+    </script>
+</body>
 </html>
-<script>
-    var clicks = 0;
-    function Click()
-    {
-        clicks+= 1;
-        document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks
-    }
-</script>
