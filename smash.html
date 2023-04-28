@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+        <title> UNICORN SMASH</title>
+        <h1 id="unicorns_smashed"> Unicorns Smashed: 0</h1>
+        <button onclick="Click()"> Click me</button>
+    </header>
+</html>
+<script>
+    var clicks = 0;
+    function Click()
+    {
+        clicks+= 1;
+        document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks
+    }
+</script>
