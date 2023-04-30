@@ -17,6 +17,7 @@
     </header>
     <script>
         var clicks = 0;
+        var sound_clicks = 0;
         var doubleClickerActivated = false;
         var gif = new Image();
         gif.src = "smash.gif";
@@ -29,8 +30,9 @@
 
 function Click() {
     clicks += doubleClickerActivated ? 2 : 1;
+    sound_clicks += 1;
     document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
-    if (clicks % 10 === 0) {  // Check if click count is a multiple of 10
+    if (sound_clicks % 10 === 0) {  // Check if click count is a multiple of 10
         var randomIndex = Math.floor(Math.random() * sounds.length);  // Choose a random sound file
         var sound = new Audio(sounds[randomIndex]);
         sound.play();  // Play the selected sound file
