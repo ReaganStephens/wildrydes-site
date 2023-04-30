@@ -80,7 +80,18 @@ button {
 
 #factory_image {
     position: absolute;
-    right: 10%;
+    right: 0%;
     top: 0;
     z-index: -3
 }
+
+#factory_counter {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 100px;
+    color: gold;
+    position: absolute;
+    bottom: 300px;
+    left: 90%;
+    transform: translateX(-50%);
+    z-index: 5;
+  }

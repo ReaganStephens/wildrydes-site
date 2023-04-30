@@ -9,6 +9,7 @@
         <h1 id="unicorns_smashed">Unicorns Smashed: 0</h1>
         <img id="title" src="Title.png" alt="title">
         <img id="factory_image" src="unicorn_factory.png" alt="Factory Image" style="display: none;">
+        <div id="factory_counter" style="text-align: center;"></div>
         <button id="double_clicks" onclick="Double()" style="border: none;">
             Double Clicks: Costs 50 Unicorns
         </button>
@@ -29,10 +30,14 @@
         static_unicorn.src = "static_unicorn.png";
         var smack = new Audio("smack.wav");
         var smackPlaying = false;
+        var numFactories = 0;
+        var FactoryActive = false;
         
         var sounds = ["1.wav", "2.wav", "3.wav", "4.wav", "5.wav", "6.wav", "7.wav", "8.wav", "9.wav", "10.wav", "11.wav", "12.wav", "13.wav"];
 
 function Click() {
+
+    document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
     clicks += doubleClickerActivated ? 2 : 1;
     sound_clicks += 1;
     document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
@@ -72,20 +77,26 @@ function Click() {
         function Factory() {
         if (clicks >= 5) {
             clicks -= 5;
+
+            numFactories++;
             FactoryActive = true;
             document.getElementById("factory_image").style.display = "block";
+            document.getElementById("factory_counter").innerHTML = "X " + numFactories;
             setInterval(function() { // Generate clicks every 5 seconds
-            clicks += 1;
+            clicks += numFactories;
             document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
             }, 5000);
             document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
+
+
         }
         else {
             alert("Not enough unicorns to activate the factory!");
         }
         if (!FactoryActive) {
         document.getElementById("factory_image").style.display = "none";
-    }
+        }
+
 }
     </script>
 </body>
