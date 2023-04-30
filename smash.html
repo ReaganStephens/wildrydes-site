@@ -8,11 +8,15 @@
     <header>
         <h1 id="unicorns_smashed">Unicorns Smashed: 0</h1>
         <img id="title" src="Title.png" alt="title">
+        <img id="factory_image" src="unicorn_factory.png" alt="Factory Image" style="display: none;">
         <button id="double_clicks" onclick="Double()" style="border: none;">
             Double Clicks: Costs 50 Unicorns
         </button>
         <button id="smash" onclick="Click()" style="border: none;">
             <img id="unicorn_image" src="static_unicorn.png" alt="Unicorn Image">
+        </button>
+        <button id="factory_box" onclick="Factory()" style="border: none;">
+            Unicorn Smashing Factory: Costs 100 Unicorns
         </button>
     </header>
     <script>
@@ -58,8 +62,31 @@ function Click() {
                 doubleClickerActivated = true;
                 document.getElementById("double_clicks").innerHTML = "Double Clicks Activated!";
                 document.getElementById("double_clicks").disabled = true;
+                document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
+            }
+            else {
+            alert("Not enough unicorns to activate Double Clicks!");
             }
         }
+
+        function Factory() {
+        if (clicks >= 5) {
+            clicks -= 5;
+            FactoryActive = true;
+            document.getElementById("factory_image").style.display = "block";
+            setInterval(function() { // Generate clicks every 5 seconds
+            clicks += 1;
+            document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
+            }, 5000);
+            document.getElementById("unicorns_smashed").innerHTML = "Unicorns Smashed: " + clicks;
+        }
+        else {
+            alert("Not enough unicorns to activate the factory!");
+        }
+        if (!FactoryActive) {
+        document.getElementById("factory_image").style.display = "none";
+    }
+}
     </script>
 </body>
 </html>
