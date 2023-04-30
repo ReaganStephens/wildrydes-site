@@ -25,7 +25,8 @@ body {
   }
   
   #unicorn_image {
-    position: relative;
+    position: absolute;
+    top: 0%;
     z-index: 1;
     opacity: 1;
     display: inline-block;
